@@ -1,0 +1,48 @@
+{% load static%}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'djangochat/css/home-light.css'%}" id="theme">
+</head>
+<body>
+  <div>
+      <h2 id="maintext">Chat</h2>
+  </div>
+
+  <div class="container">
+
+      <form id="post-form" method="POST" action="checkview">
+          {% csrf_token %}
+
+          <label>Room Name</label>
+          <input type="text" name="room_name" id="room_name" width="100px" placeholder="Room name"/>
+          
+          <label>Username</label>
+          <input type="text" name="username" id="username" width="100px" placeholder="Username"/>
+          
+          <button id="but" value="Enter">Enter</button>
+      </form>
+  </div>
+  <button id="switchh">Change theme</button>
+
+  
+</body>
+<script>
+  let switchMode = document.getElementById('switchh')
+
+  switchMode.onclick = function(){
+      let theme = document.getElementById('theme')
+
+      if (theme.getAttribute('href') == "{% static 'djangochat/css/home-light.css'%}"){
+          theme.href = "{% static 'djangochat/css/home-dark.css'%}"
+      } else {
+          theme.href = "{% static 'djangochat/css/home-light.css'%}"
+      }
+  }
+</script>
+</html>
